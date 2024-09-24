@@ -1,0 +1,9 @@
+<header class="header ff-inter">
+  <h1>Contact Manager</h1>
+  <nav *ngIf="isLoggedIn">
+    <a routerLink="/home">Home</a>
+    <a routerLink="/contacts">Contacts</a>
+    <a routerLink="/profile">Profile</a>
+    <button (click)="logout()" class="btn btn-secondary btn-logout">Logout</button>
+  </nav>
+</header>

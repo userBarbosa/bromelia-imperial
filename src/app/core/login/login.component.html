@@ -1,0 +1,11 @@
+<section class="login-container">
+  <h2>Login! 👋</h2>
+  <form [formGroup]="loginForm">
+    <label for="email">Email:</label>
+    <input type="email" name="email" formControlName="email" placeholder="seu.nome@email.com">
+    <label for="password">Password:</label>
+    <input name="password" formControlName="password" type="password" placeholder="******">
+    <button class="btn btn-submit btn-signin" (click)="login()">Login</button>
+  </form>
+  <p>Don't have an account? <a routerLink="/signup">Sign Up Now</a></p>
+</section>

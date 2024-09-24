@@ -1,0 +1,12 @@
+<section class="signup-container">
+  <h2>Sign up! 👋</h2>
+  <form [formGroup]="signupForm">
+    <label for="email">Email:</label>
+    <input type="email" name="email" formControlName="email" placeholder="seu.nome@email.com">
+    <label for="password">Password:</label>
+    <input name="password" formControlName="password" type="password" placeholder="******">
+    <button class="btn btn-submit btn-signup" (click)="signup()">Create account</button>
+  </form>
+  <p class="terms">By clicking "Create account", you agree to our terms, which we don't know yet, but you agree to them.</p>
+  <p>Return to <a routerLink="/login">login</a>.</p>
+</section>
