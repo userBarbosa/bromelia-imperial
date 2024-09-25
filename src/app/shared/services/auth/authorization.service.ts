@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthorizationService {
   constructor(private client: HttpClient, private cs: ConfigurationService) {}
 
-  private readonly baseURL = 'http://localhost:4000';
+  private readonly baseURL = 'http://localhost:3000/api';
 
   setSession(response: LoginUserResponse): void {
     const expiresAt = Date.now() + response.data.expiresIn * 1000;
