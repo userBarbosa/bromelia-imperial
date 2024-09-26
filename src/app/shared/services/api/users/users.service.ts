@@ -8,10 +8,31 @@ import { LoginUserResponse } from '../../../models/User';
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private client: HttpClient, private cs: ConfigurationService) {}
-  private readonly baseURL = 'http://localhost:4000';
+  private baseURL: string;
+  constructor(private client: HttpClient, private cs: ConfigurationService) {
+    this.baseURL = this.cs.BASE_URL;
+  }
 
-  getMe(): Observable<LoginUserResponse> {
+  GetMe(): Observable<LoginUserResponse> {
     return this.client.get<LoginUserResponse>(this.baseURL + '/users/me');
+  }
+
+  Login(email: string, password: string): Observable<LoginUserResponse> {
+    return this.client.post<LoginUserResponse>(this.baseURL + '/users/login', {
+      email,
+      password,
+    });
+  }
+
+  SignUp(
+    name: string,
+    email: string,
+    password: string
+  ): Observable<LoginUserResponse> {
+    return this.client.post<LoginUserResponse>(this.baseURL + '/users/signup', {
+      name,
+      email,
+      password,
+    });
   }
 }

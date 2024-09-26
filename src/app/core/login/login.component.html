@@ -2,10 +2,22 @@
   <h2>Login! 👋</h2>
   <form [formGroup]="loginForm">
     <label for="email">Email:</label>
-    <input type="email" name="email" formControlName="email" placeholder="seu.nome@email.com">
+    <input type="email" name="email" formControlName="email" placeholder="john.snow@email.com">
+    <div class="error-message" *ngIf="email?.touched && email?.errors?.['required']">
+      O email é obrigatório!
+    </div>
+    <div class="error-message" *ngIf="email?.touched && email?.errors?.['required']">
+      O email é obrigatório!
+    </div>
+    <div class="error-message" *ngIf="email?.touched && email?.errors?.['email']">
+      O email informado não é válido.
+    </div>
     <label for="password">Password:</label>
     <input name="password" formControlName="password" type="password" placeholder="******">
-    <button class="btn btn-submit btn-signin" (click)="login()">Login</button>
+    <div class="error-message" *ngIf="password?.touched && password?.errors?.['required']">
+      A senha é obrigatória!
+    </div>
+    <button class="btn btn-login" (click)="login()" [disabled]="handleLoginButtonDisabled()">Login</button>
   </form>
   <p>Don't have an account? <a routerLink="/signup">Sign Up Now</a></p>
 </section>

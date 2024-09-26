@@ -1,7 +1,4 @@
-@primary-color: #4a90e2;
-@secondary-color: #f0f4f8;
-@text-color: #333;
-@error-color: #ff4d4f;
+@import "../../../global-colors.less";
 
 .login-container {
   display: flex;
@@ -15,7 +12,7 @@
     font-size: 2.5rem;
     color: @primary-color;
     margin-bottom: 2rem;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   form {
@@ -24,7 +21,7 @@
     background: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 
     label {
       display: block;
@@ -49,21 +46,29 @@
       }
     }
 
-    .btn-signin {
+    .btn-login {
       width: 100%;
-      background-color: @primary-color;
       color: white;
-      border: none;
       padding: 0.75rem;
-      border-radius: 5px;
       font-size: 1rem;
       font-weight: 600;
-      cursor: pointer;
       transition: background-color 0.3s ease;
+      background-color: @primary-color;
+      margin-top: 10px;
 
-      &:hover {
+      &:hover:not(:disabled) {
         background-color: darken(@primary-color, 10%);
       }
+      &:disabled {
+        background-color: @disabled-color;
+      }
+    }
+    .error-message {
+      font-size: 12px;
+      margin-left: 5px;
+      color: @error-color;
+      margin-top: -20px;
+      margin-bottom: 15px;
     }
   }
 
@@ -99,8 +104,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .login-container form input {

@@ -3,14 +3,20 @@ import { ConfigurationService } from '../config/configuration.service';
 import { HttpClient } from '@angular/common/http';
 import { LOCAL_STORAGE_STRINGS, LoginUserResponse } from '../../models/User';
 import { Observable } from 'rxjs';
+import { UsersService } from '../api/users/users.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
-  constructor(private client: HttpClient, private cs: ConfigurationService) {}
-
-  private readonly baseURL = 'http://localhost:3000/api';
+  private baseURL: string;
+  constructor(
+    private client: HttpClient,
+    private cs: ConfigurationService,
+    private usersService: UsersService
+  ) {
+    this.baseURL = this.cs.BASE_URL;
+  }
 
   setSession(response: LoginUserResponse): void {
     const expiresAt = Date.now() + response.data.expiresIn * 1000;
@@ -20,14 +26,6 @@ export class AuthorizationService {
       LOCAL_STORAGE_STRINGS.EXPIRATION,
       JSON.stringify(expiresAt)
     );
-    console.log(this.getExpiration());
-  }
-
-  login(email: string, password: string): Observable<LoginUserResponse> {
-    return this.client.post<LoginUserResponse>(this.baseURL + '/users/login', {
-      email,
-      password,
-    });
   }
 
   logout(): void {
@@ -48,10 +46,15 @@ export class AuthorizationService {
     return new Date(expiresAt).getTime();
   }
 
-  signup(email: string, password: string): Observable<LoginUserResponse> {
-    return this.client.post<LoginUserResponse>(this.baseURL + '/users/signup', {
-      email,
-      password,
-    });
+  login(email: string, password: string): Observable<LoginUserResponse> {
+    return this.usersService.Login(email, password);
+  }
+
+  signup(
+    name: string,
+    email: string,
+    password: string
+  ): Observable<LoginUserResponse> {
+    return this.usersService.SignUp(name, email, password);
   }
 }

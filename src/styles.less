@@ -1,7 +1,4 @@
-@primary-color: #4a90e2;
-@secondary-color: #f0f4f8;
-@text-color: #333;
-@light-text-color: #fff;
+@import "global-colors.less";
 
 .container {
   padding-right: 1rem;
@@ -30,8 +27,12 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 10;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
 
   h1 {
     margin: 0;
@@ -58,6 +59,10 @@ body {
         opacity: 0.8;
       }
     }
+
+    .btn-logout {
+      margin-left: 1.5rem;
+    }
   }
 }
 
@@ -71,11 +76,10 @@ body {
   color: @light-text-color;
   padding: 1rem 2rem;
   text-align: center;
-  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 20px;
+  height: 35px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -105,13 +109,20 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
+  background-color: @primary-color;
 
-  &:hover {
-    transform: translateY(-1px);
+  &:hover:not(:disabled) {
+    transform: translateY(0px);
   }
 
   &:active {
-    transform: translateY(1px);
+    transform: translateY(0px);
+  }
+
+  &:disabled {
+    background-color: @disabled-color;
+    transition: none;
+    cursor: not-allowed;
   }
 }
 
@@ -130,54 +141,5 @@ body {
 
   &:hover {
     background-color: darken(@secondary-color, 10%);
-  }
-}
-
-.header {
-  background: linear-gradient(
-    to right,
-    @primary-color,
-    darken(@primary-color, 15%)
-  );
-  padding: 0 2rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-
-  h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: @light-text-color;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-
-    a {
-      color: @light-text-color;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-      transition: opacity 0.3s ease;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .btn-logout {
-      margin-left: 1.5rem;
-    }
   }
 }

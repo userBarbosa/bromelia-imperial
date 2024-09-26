@@ -1,4 +1,6 @@
-'use strict';
+import { CommonModule } from '@angular/common';
+import { ToastService } from './../../shared/services/toast/toast.service';
+('use strict');
 
 import { Component, OnInit } from '@angular/core';
 import {
@@ -13,7 +15,7 @@ import { AuthorizationService } from '../../shared/services/auth/authorization.s
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.less',
 })
@@ -21,15 +23,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthorizationService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   loginForm!: FormGroup;
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {      
-      this.router.navigateByUrl('/contacts')
-    };
+    if (this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/contacts');
+    }
     const emailValidations = [Validators.required, Validators.email];
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose(emailValidations)],
@@ -52,11 +55,32 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService
-      .login(loginValues.email, loginValues.password)
-      .subscribe((response) => {
+    this.authService.login(loginValues.email, loginValues.password).subscribe({
+      next: (response) => {
         this.authService.setSession(response);
         this.router.navigateByUrl('/contacts');
-      });
+      },
+      error: (response) => {
+        this.showErrorToast(response);
+      },
+    });
+  }
+
+  handleLoginButtonDisabled(): boolean {
+    return !this.loginForm.valid;
+  }
+
+  showErrorToast(error: Record<string, any>) {
+    console.log(error);
+    const message =
+      error?.['error']?.['message'] ||
+      error?.['message'] ||
+      'Something went wrong!';
+    console.log('message :>> ', message);
+    this.toastService.showToast(
+      'error',
+      'Oh no! An wild error has appeared',
+      message
+    );
   }
 }

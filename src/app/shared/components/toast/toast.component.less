@@ -1,0 +1,54 @@
+@import "../../../../global-colors.less";
+
+@background_color_3: #17a2b8;
+
+.toast-container {
+  position: fixed;
+  max-width: 350px;
+  min-width: 200px;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 11;
+}
+
+.toast {
+  background-color: @text-color;
+  color: @light-text-color;
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  strong {
+    font-weight: bold;
+  }
+}
+
+.toast.success {
+  background-color: @success-color;
+}
+
+.toast.error {
+  background-color: @error-color;
+}
+
+.toast.info {
+  background-color: @background_color_3;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: @light-text-color;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
