@@ -1,15 +1,14 @@
-
 <section class="container">
 
-<div class="thought-wall" *ngIf="contacts.length > 0; else emptyList">
-  <div *ngFor="let thought of contacts">
-    <!-- <app-card [thought]="thought" [favoriteList]="favoriteList"></app-card> -->
+  <div class="" *ngIf="contacts.length > 0; else emptyList">
+    <div *ngFor="let contact of contacts">
+      <!-- <app-card [thought]="thought" [favoriteList]="favoriteList"></app-card> -->
+    </div>
   </div>
-</div>
 </section>
 
 <ng-template #emptyList>
-<div class="ff-inter empty-list">
-  <p>Ainda não há contatos cadastrados!</p>
-</div>
+  <div class="ff-inter empty-list">
+    <p>Ainda não há contatos cadastrados!</p>
+  </div>
 </ng-template>

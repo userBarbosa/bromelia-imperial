@@ -1,0 +1,33 @@
+@import "../../../global-colors.less";
+
+.footer {
+  background-color: darken(@primary-color, 20%);
+  color: @light-text-color;
+  padding: 1rem 2rem;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .social-links {
+    a {
+      color: @light-text-color;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

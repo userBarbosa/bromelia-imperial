@@ -1,0 +1,24 @@
+<section class="container">
+
+  <div class="" *ngIf="groups.length > 0; else emptyList">
+    <div *ngFor="let group of groups">
+      <div style="display: flex; justify-content: space-between">
+        <a (click)="toggleGroup(group.id)" style="cursor: pointer;">
+          <span>{{group.name}} ({{group.members.length}})</span>
+        </a>
+        <a (click)="toggleGroup(group.id)" style="cursor: pointer;">
+          <img src="assets/arrow.png" [ngClass]="changeArrow(group.id)" style="width: 20px;" />
+        </a>
+      </div>
+      <div *ngIf="openGroups[group.id]">
+        <p>{{ group.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #emptyList>
+  <div class="ff-inter empty-list">
+    <p>Ainda não há grupos cadastrados!</p>
+  </div>
+</ng-template>

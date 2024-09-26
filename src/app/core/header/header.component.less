@@ -1,0 +1,70 @@
+@import "../../../global-colors.less";
+
+.header {
+  background: linear-gradient(
+    to right,
+    @primary-color,
+    darken(@primary-color, 15%)
+  );
+  padding: 1rem 2rem;
+  min-width: 380px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+    }
+
+    h1 {
+      margin: 0 0 0 30px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: @light-text-color;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    a {
+      color: @light-text-color;
+      text-decoration: none;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .btn-logout {
+      margin-left: 1.5rem;
+    }
+  }
+
+  // Media query for screens smaller than 640px
+  @media (max-width: 640px) {
+    flex-direction: column; // Stack items vertically
+
+    nav {
+      width: 100%; // Make nav take full width
+      justify-content: center; // Center the navigation links
+      margin-top: 1rem; // Add some spacing above nav
+    }
+  }
+}

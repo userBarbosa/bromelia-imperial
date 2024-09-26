@@ -6,14 +6,15 @@ import { SignupComponent } from './core/signup/signup.component';
 
 // FEATURES
 import { ContactsListComponent } from './features/contacts/list/list.component';
+import { GroupsListComponent } from './features/groups/list/groups.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'contacts', component: ContactsListComponent },
+  { path: 'contacts', component: GroupsListComponent },
   // { path: 'contacts/new', component: ContactFormComponent },
   // { path: 'contacts/:id/edit', component: ContactFormComponent },
-  // { path: 'groups', component: GroupsComponent },
+  // { path: 'groups', component: GroupsListComponent },
   // { path: 'groups/new', component: GroupFormComponent },
   // { path: 'groups/:id/edit', component: GroupFormComponent },
   // { path: 'groups/:id', component: GroupDetailsComponent },
