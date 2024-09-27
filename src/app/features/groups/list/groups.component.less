@@ -1,0 +1,45 @@
+@import "../../../../global-colors.less";
+
+.group-header {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+  .group-header-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+  }
+}
+
+.group-body {
+  p {
+    font-size: 12px;
+  }
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

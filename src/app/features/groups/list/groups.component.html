@@ -1,22 +1,25 @@
 <section class="container">
-
   <div class="" *ngIf="groups.length > 0; else emptyList">
     <div *ngFor="let group of groups">
-      <div style="display: flex; justify-content: space-between">
-        <a (click)="toggleGroup(group.id)" style="cursor: pointer;">
+      <a (click)="toggleGroup(group.id)" class="group-header">
+        <div class="group-header-content">
           <span>{{group.name}} ({{group.members.length}})</span>
-        </a>
-        <a (click)="toggleGroup(group.id)" style="cursor: pointer;">
-          <img src="assets/arrow.png" [ngClass]="changeArrow(group.id)" style="width: 20px;" />
-        </a>
-      </div>
-      <div *ngIf="openGroups[group.id]">
-        <p>{{ group.description }}</p>
+          <img src="assets/arrow.png" [ngClass]="changeArrow(group.id)" class="arrow-icon" />
+        </div>
+      </a>
+      <div *ngIf="openGroups[group.id]" class="group-body">
+        <p>"{{ group.description }}"</p>
+        <div class="contact-grid">
+          <app-contacts-card *ngFor="let contact of getStoredContacts(group.id)" [contact]="contact"></app-contacts-card>
+        </div>
+        <!-- <div *ngFor="let contact of getStoredContacts(group.id)" class="group-contact">
+          <app-contacts-card [contact]="contact"></app-contacts-card>
+        </div> -->
       </div>
     </div>
   </div>
 </section>
-
+<app-fab></app-fab>
 <ng-template #emptyList>
   <div class="ff-inter empty-list">
     <p>Ainda não há grupos cadastrados!</p>

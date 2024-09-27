@@ -10,8 +10,21 @@ export class ToastService {
   // The $ at the end of the variable name is a naming convention to indicate that the variable holds an observable.
   toast$ = this.toastSubject.asObservable();
 
-  showToast(type: 'success' | 'error' | 'info' = 'info', title: string, text: string) {
+  showToast(
+    type: 'success' | 'error' | 'info' = 'info',
+    title: string,
+    text: string
+  ) {
     const toast: Toast = { title, text, type };
     this.toastSubject.next(toast);
+  }
+
+  getErrorMessage(response: { [x: string]: any }): string {
+    const message =
+      response?.['error']?.['error']?.['message'] ||
+      response?.['error']?.['message'] ||
+      response?.['message'] ||
+      'Something went wrong!';
+    return message;
   }
 }

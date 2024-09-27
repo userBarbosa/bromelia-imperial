@@ -3,23 +3,24 @@
   <form [formGroup]="signupForm">
     <label for="name">Your name:</label>
     <input type="name" name="name" formControlName="name" placeholder="John Snow">
-    <div class="error-message" *ngIf="name?.touched && 
+    <div class="error-message" *ngIf="(name?.touched || name?.dirty) && 
       name?.errors?.['required']">
       O nome é obrigatório!
     </div>
-    <div class="error-message" *ngIf="name?.touched && name?.errors?.['minlength'] || name?.errors?.['maxlength']">
+    <div class="error-message"
+      *ngIf="(name?.touched || name?.dirty) && (name?.errors?.['minlength'] || name?.errors?.['maxlength'])">
       O nome precisar ter no mínimo 3 caracteres e no máximo 20 caracteres.
     </div>
-    <div class="error-message" *ngIf="name?.touched &&
+    <div class="error-message" *ngIf="(name?.touched || name?.dirty) &&
       name?.errors?.['pattern']">
       Esse campo aceita apenas letras e espaços.
     </div>
     <label for="email">Email:</label>
     <input type="email" name="email" formControlName="email" placeholder="john.snow@email.com">
-    <div class="error-message" *ngIf="email?.touched && email?.errors?.['required']">
+    <div class="error-message" *ngIf="(email?.touched || email?.dirty) && email?.errors?.['required']">
       O email é obrigatório!
     </div>
-    <div class="error-message" *ngIf="email?.touched && email?.errors?.['email']">
+    <div class="error-message" *ngIf="(email?.touched || email?.dirty) && email?.errors?.['email']">
       O email informado não é válido.
     </div>
     <label for="password">Password:</label>

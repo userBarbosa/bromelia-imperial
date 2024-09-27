@@ -1,1 +1,24 @@
-<p>card works!</p>
+<!-- <div class="contact-card">
+  <h3 class="contact-name">{{contact.name}}</h3>
+  <div class="contact-info">
+    <div class="contact-phone">
+      <span class="label">Phone:</span> {{contact.phone}}
+    </div>
+    <div class="contact-email">
+      <span class="label">Email:</span> {{contact.email}}
+    </div>
+  </div>
+  <button class="edit-button" (click)="navigateToEdit()">Edit Contact</button>
+</div> -->
+<div class="contact-card">
+  <div class="avatar">{{ contact.name[0] }}</div>
+  <div class="contact-info">
+    <h3 class="contact-name">{{ contact.name }}</h3>
+    <p class="contact-details"><mat-icon>smartphone</mat-icon>{{ contact.phone }}</p>
+    <p class="contact-details"><mat-icon>mail</mat-icon> {{ contact.email }}</p>
+  </div>
+  <button class="btn btn-edit-contact" (click)="navigateToEdit()">
+    Editar
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

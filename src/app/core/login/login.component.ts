@@ -71,16 +71,10 @@ export class LoginComponent implements OnInit {
   }
 
   showErrorToast(error: Record<string, any>) {
-    console.log(error);
-    const message =
-      error?.['error']?.['message'] ||
-      error?.['message'] ||
-      'Something went wrong!';
-    console.log('message :>> ', message);
     this.toastService.showToast(
       'error',
       'Oh no! An wild error has appeared',
-      message
+      this.toastService.getErrorMessage(error)
     );
   }
 }

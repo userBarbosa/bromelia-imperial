@@ -5,17 +5,18 @@ import { LoginComponent } from './core/login/login.component';
 import { SignupComponent } from './core/signup/signup.component';
 
 // FEATURES
-import { ContactsListComponent } from './features/contacts/list/list.component';
 import { GroupsListComponent } from './features/groups/list/groups.component';
+import { ContactsFormComponent } from './features/contacts/form/form.component';
+import { GroupsFormComponent } from './features/groups/form/form.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'contacts', component: GroupsListComponent },
-  // { path: 'contacts/new', component: ContactFormComponent },
-  // { path: 'contacts/:id/edit', component: ContactFormComponent },
+  { path: 'groups', component: GroupsListComponent },
+  { path: 'contacts/new', component: ContactsFormComponent },
+  { path: 'contacts/:id/edit', component: ContactsFormComponent },
   // { path: 'groups', component: GroupsListComponent },
-  // { path: 'groups/new', component: GroupFormComponent },
+  { path: 'groups/new', component: GroupsFormComponent },
   // { path: 'groups/:id/edit', component: GroupFormComponent },
   // { path: 'groups/:id', component: GroupDetailsComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

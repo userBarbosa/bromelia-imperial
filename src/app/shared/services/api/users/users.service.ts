@@ -10,15 +10,15 @@ import { LoginUserResponse } from '../../../models/User';
 export class UsersService {
   private baseURL: string;
   constructor(private client: HttpClient, private cs: ConfigurationService) {
-    this.baseURL = this.cs.BASE_URL;
+    this.baseURL = this.cs.BASE_URL + '/users';
   }
 
   GetMe(): Observable<LoginUserResponse> {
-    return this.client.get<LoginUserResponse>(this.baseURL + '/users/me');
+    return this.client.get<LoginUserResponse>(this.baseURL + '/me');
   }
 
   Login(email: string, password: string): Observable<LoginUserResponse> {
-    return this.client.post<LoginUserResponse>(this.baseURL + '/users/login', {
+    return this.client.post<LoginUserResponse>(this.baseURL + '/login', {
       email,
       password,
     });
@@ -29,7 +29,7 @@ export class UsersService {
     email: string,
     password: string
   ): Observable<LoginUserResponse> {
-    return this.client.post<LoginUserResponse>(this.baseURL + '/users/signup', {
+    return this.client.post<LoginUserResponse>(this.baseURL + '/signup', {
       name,
       email,
       password,

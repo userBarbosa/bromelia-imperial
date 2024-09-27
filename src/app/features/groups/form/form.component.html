@@ -1,0 +1,51 @@
+<div class="create-group-container">
+  <h2>Create New Group</h2>
+  <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input type="text" id="name" formControlName="name" placeholder="Nome bem criativo">
+      <div *ngIf="groupForm.get('name')?.invalid && (groupForm.get('name')?.dirty || groupForm.get('name')?.touched)"
+        class="error-message">
+        O nome do grupo é obrigatório!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <textarea id="description" formControlName="description" placeholder="Uma descrição bem descritiva."
+        rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Membros</label>
+      <div formArrayName="members" class="members-list">
+        <div *ngFor="let member of members.controls; let i = index" [formGroupName]="i" class="member-item">
+          <input type="text" formControlName="name" placeholder="Arthur Morgan">
+          <button type="button" class="btn-remove" (click)="removeMember(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button type="button" class="add-button" (click)="addMember()">
+        Add membro <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <!-- <div class="form-group">
+      <label>Ativo</label>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" formControlName="active" [value]="true"> Sim
+        </label>
+        <label class="radio-label">
+          <input type="radio" formControlName="active" [value]="false"> Não
+        </label>
+      </div>
+    </div> -->
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="groupForm.invalid">Salvar</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

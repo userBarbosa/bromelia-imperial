@@ -46,14 +46,6 @@
       }
     }
 
-    .error-message {
-      font-size: 12px;
-      margin-left: 5px;
-      color: @error-color;
-      margin-top: -20px;
-      margin-bottom: 15px;
-    }
-
     .btn-signup {
       width: 100%;
       color: white;
@@ -80,14 +72,14 @@
       .validation-item {
         font-size: 12px;
         display: flex;
-        align-items: center; // This will vertically center the content
+        align-items: center;
         padding: 0.5rem 0;
-        line-height: 18px; // Match this to the height of your image
+        line-height: 18px;
 
         img {
-          width: 18px; /* Adjust based on your icon size */
+          width: 18px;
           height: 18px;
-          margin-right: 8px; /* Space between icon and text */
+          margin-right: 8px;
         }
 
         span {
@@ -95,13 +87,13 @@
         }
         &.checked {
           span {
-            color: @success-color; // Use your defined color variable for checked items
+            color: @success-color;
           }
         }
 
         &.not-checked {
           span {
-            color: @error-color; // Use your defined color variable for unchecked items
+            color: @error-color;
           }
         }
       }

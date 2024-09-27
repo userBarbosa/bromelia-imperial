@@ -1,0 +1,17 @@
+<div class="fab-container">
+  <button mat-icon-button class="fab" (click)="toggleMenu()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <div class="fab-menu" *ngIf="isOpen">
+    <button
+      mat-icon-button
+      class="fab-option"
+      *ngFor="let option of options"
+      (click)="navigateTo(option.route)"
+    >
+      <mat-icon>{{ option.icon }}</mat-icon>
+      <span>{{ option.label }}</span>
+    </button>
+  </div>
+</div>

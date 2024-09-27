@@ -8,3 +8,9 @@ export type Contact = {
   email: string;
   groupId: string;
 };
+
+export type ContactResponse = {
+  error?: { [key: string]: any };
+  data?: Contact;
+  success: boolean;
+};

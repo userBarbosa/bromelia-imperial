@@ -1,0 +1,49 @@
+<div class="create-contact-container">
+  <h2>{{pageTitle}}</h2>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome *</label>
+      <input type="text" id="name" placeholder="Dr. Emmett Brown" formControlName="name">
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error-message">
+        Nome é obrigatório!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Endereço</label>
+      <input type="text" id="address" formControlName="address" placeholder="Riverside Drive, 1640 - Hill Valley">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Numero de telefone ou celular *</label>
+      <input type="tel" id="phone" formControlName="phone" placeholder="00987654321" mas>
+      <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error-message">
+        Número é obrigatório
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input type="email" id="email" formControlName="email" placeholder="doc.brown@email.com">
+      <div class="error-message" *ngIf="(email?.touched || email?.dirty) && email?.errors?.['required']">
+        O email é obrigatório!
+      </div>
+      <div class="error-message" *ngIf="(email?.touched || email?.dirty) && email?.errors?.['email']">
+        O email informado não é válido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="groupId">Selecione um grupo *</label>
+      <select id="groupId" formControlName="groupId">
+        <option value="">Selecione um grupo</option>
+        <option *ngFor="let group of this.possibleGroups" [value]="group?.id">{{group?.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Salvar</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+    </div>
+  </form>
+</div>
